@@ -1,6 +1,9 @@
+package gui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import domain.Ampellogik;
 import javafx.fxml.*;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
@@ -23,20 +26,46 @@ class Controller implements Initializable {
     @FXML
     private Button buttonWeiter;
 
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //---------------------------------------------
         // Eventhandler
         //---------------------------------------------    
         buttonWeiter.setOnAction(event -> {
-
+           Ampellogik.weiter();
         });
 
         //---------------------------------------------
         // Start
         //---------------------------------------------
-        // Code wird ausgeführt,
-        // wenn Fenster und Steuerelemente bereit sind
+
+        rotAn();
+        gelbAus();
+        gruenAus();
+    }
+
+    public void rotAn(){
         circleRot.setFill(Color.RED);
     }
+    public void rotAus(){
+        circleRot.setFill(Color.GRAY);
+    }
+    public void gelbAn(){
+        circleGelb.setFill(Color.YELLOW);
+    }
+    public void gelbAus(){
+        circleGelb.setFill(Color.GRAY);
+    }
+    public void gruenAn(){
+        circleGruen.setFill(Color.GREEN);
+    }
+    public void gruenAus(){
+        circleGruen.setFill(Color.GRAY);
+    }
+
+
+
+
 }
