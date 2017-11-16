@@ -1,15 +1,15 @@
-package gui;
+package view;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import domain.Ampellogik;
 import javafx.fxml.*;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import presenter.Presenter;
 
-class Controller implements Initializable {
+public class PassiveView implements Initializable {
 
     //---------------------------------------------
     // Membervariablen für Steuerelemente
@@ -26,7 +26,10 @@ class Controller implements Initializable {
     @FXML
     private Button buttonWeiter;
 
-
+    //---------------------------------------------
+    // sonstige Datenfelder
+    //---------------------------------------------
+    private Presenter presenter;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -34,38 +37,37 @@ class Controller implements Initializable {
         // Eventhandler
         //---------------------------------------------    
         buttonWeiter.setOnAction(event -> {
-           Ampellogik.weiter();
+            presenter.weiter();
         });
 
         //---------------------------------------------
         // Start
         //---------------------------------------------
-
-        rotAn();
-        gelbAus();
-        gruenAus();
+        presenter = new Presenter(this);
     }
 
-    public void rotAn(){
+    public void rotAn() {
         circleRot.setFill(Color.RED);
     }
-    public void rotAus(){
+
+    public void rotAus() {
         circleRot.setFill(Color.GRAY);
     }
-    public void gelbAn(){
+
+    public void gelbAn() {
         circleGelb.setFill(Color.YELLOW);
     }
-    public void gelbAus(){
+
+    public void gelbAus() {
         circleGelb.setFill(Color.GRAY);
     }
-    public void gruenAn(){
+
+    public void gruenAn() {
         circleGruen.setFill(Color.GREEN);
     }
-    public void gruenAus(){
+
+    public void gruenAus() {
         circleGruen.setFill(Color.GRAY);
     }
-
-
-
 
 }
