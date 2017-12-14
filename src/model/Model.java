@@ -6,6 +6,7 @@ public class Model {
 
     private Ampelphase phase;
     private Presenter presenter;
+    private Logger logger;
 
     public Model() {
         this.phase = Ampelphase.GELB;
@@ -14,6 +15,7 @@ public class Model {
     public Model(Presenter presenter) {
         this();
         this.presenter = presenter;
+        logger = new KonsolenLogger();
         weiter();
     }
 
@@ -31,8 +33,10 @@ public class Model {
             case GELB:
                 phase = Ampelphase.ROT;
                 break;
-
         }
         presenter.setAmpelzustand(phase);
+        logger.log(phase);
+
+        // Zeit und Ampelphase mitloggen
     }
 }
